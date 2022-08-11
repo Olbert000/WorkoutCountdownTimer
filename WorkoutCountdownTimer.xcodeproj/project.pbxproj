@@ -133,10 +133,9 @@
 				5E04517128A3BF8200F09872 /* TimerData.swift */,
 				5E04517028A3BF8200F09872 /* TimerFunctions.swift */,
 				5E04517428A3BF8200F09872 /* TimerViewModel.swift */,
-				5E04518F28A3C04F00F09872 /* Views and Styles */,
-				5E04514128A382AA00F09872 /* ContentView.swift */,
-				5E04514328A382AC00F09872 /* Assets.xcassets */,
 				5E04514828A382AC00F09872 /* Persistence.swift */,
+				5E04518F28A3C04F00F09872 /* Views and Styles */,
+				5E04514328A382AC00F09872 /* Assets.xcassets */,
 				5E04514D28A382AC00F09872 /* Info.plist */,
 				5E04514A28A382AC00F09872 /* WorkoutCountdownTimer.xcdatamodeld */,
 				5E04514528A382AC00F09872 /* Preview Content */,
@@ -173,8 +172,9 @@
 			isa = PBXGroup;
 			children = (
 				5E04518228A3C00000F09872 /* Styles.swift */,
-				5E04519028A3C07C00F09872 /* Countdown Views */,
+				5E04514128A382AA00F09872 /* ContentView.swift */,
 				5E04518428A3C00000F09872 /* LandingView.swift */,
+				5E04519028A3C07C00F09872 /* Countdown Views */,
 			);
 			path = "Views and Styles";
 			sourceTree = "<group>";

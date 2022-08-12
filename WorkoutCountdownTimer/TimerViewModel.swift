@@ -8,37 +8,39 @@
 import Foundation
 import CoreData
 
-//TODO: Make countDOwnTimes a user setting.
+//TODO: Make countdownTimes a user setting.
+//TODO: Change countDown to countdown - countdown is a complete word on it's own (noun version).
+//TODO: Remove ChangeToCoreDataEntity and replace with CountDownEntity.
 
 @MainActor class TimerViewModel: ObservableObject{
     static let countDownTimes: [TimeInterval] = [30,60,90,180,300,600]
     static let timerInterval: Double = 0.1
     
-    @Published var countDown: CountDown?
-    @Published var countDownTimerHistory: [SaveableCountDown]
+    @Published var liveCountdown: LiveCountDown?
+    @Published var countDownTimerHistory: [ChangeToCoreDataEntity]
     
     @Published private var currentTime: Date
     private var timer: Timer
  
     var countDownHasCommenced: Bool {
-        return countDown != nil
+        return liveCountdown != nil
     }
     
     var currentCountDownHasExpired: Bool? {
         guard
-            let countingDownFrom = countDown?.countingDownFrom,
+            let countingDownFrom = liveCountdown?.countingDownFrom,
             let currentCountDownTime = currentCountDownTime
             else { return nil }
         return currentCountDownTime > countingDownFrom
     }
     
     var totalTimeForThisCountDown: TimeInterval? {
-        return countDown?.totalTimeForThisCountdown(currentTime: currentTime)
+        return liveCountdown?.totalTimeForThisCountdown(currentTime: currentTime)
     }
     
     var currentCountDownTime: TimeInterval? {
         guard
-            let countingDownFrom = countDown?.countingDownFrom,
+            let countingDownFrom = liveCountdown?.countingDownFrom,
             let totalTimeForThisCountDown = totalTimeForThisCountDown
             else { return nil }
         return countingDownFrom - totalTimeForThisCountDown
@@ -46,7 +48,7 @@ import CoreData
     
     var remainingTime: TimeInterval? {
         guard
-            let countingDownFrom = countDown?.countingDownFrom,
+            let countingDownFrom = liveCountdown?.countingDownFrom,
             let currentCountDownTime = currentCountDownTime
             else { return nil }
         return countingDownFrom - currentCountDownTime
@@ -55,18 +57,18 @@ import CoreData
     //UI Methods:
     func commenceCountDown(from: TimeInterval) {
         let now = Date.now
-        if let saveableCountDown = TimerFunctions.transformCountDownToHistory(totalCountDownTime: currentCountDownTime, countingDownFrom: countDown?.countingDownFrom, startTime: countDown?.startStopTimes.first) {
+        if let saveableCountDown = TimerFunctions.transformCountDownToHistory(totalCountDownTime: currentCountDownTime, countingDownFrom: liveCountdown?.countingDownFrom, startTime: liveCountdown?.startStopTimes.first) {
             countDownTimerHistory.insert(saveableCountDown, at: 0)
         }
-        countDown = CountDown(startedAt: now, countingDownFrom: from)
+        liveCountdown = LiveCountDown(startedAt: now, countingDownFrom: from)
     }
     
     func playPauseTimer() {
-        countDown?.startStopTimes.append(currentTime)
+        liveCountdown?.startStopTimes.append(currentTime)
     }
     
     func resetAll() {
-        countDown = nil
+        liveCountdown = nil
         countDownTimerHistory = []
     }
     
@@ -83,7 +85,7 @@ import CoreData
     }
     
     init(){
-        self.countDown = nil
+        self.liveCountdown = nil
         self.countDownTimerHistory = []
         self.currentTime = Date.now
         self.timer = Timer()

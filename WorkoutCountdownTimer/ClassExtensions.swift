@@ -16,7 +16,7 @@ extension Date {
     }
 }
 
-extension Array where Element == SaveableCountDown {
+extension Array where Element == ChangeToCoreDataEntity {
     var cumulativeTimes : [TimeInterval] {
             let totalTimes = self.map {$0.totalTimeForThisCountDown}.reversed()
             return totalTimes.reduce(into: []) { $0.append(($0.last ?? 0) + $1) }.reversed()
@@ -59,8 +59,10 @@ extension TimeInterval {
     }
 }
 
+//TODO: Change name to SaveableCountdown
+
 extension CountDownEntity {
-    convenience init (saveableCountDown: SaveableCountDown, viewContext: NSManagedObjectContext) {
+    convenience init (saveableCountDown: ChangeToCoreDataEntity, viewContext: NSManagedObjectContext) {
         self.init(context: viewContext)
         self.countingDownFrom = saveableCountDown.countingDownFrom
         self.overTime = saveableCountDown.overTime
@@ -96,7 +98,7 @@ extension CountDownEntity {
 }
 
 extension WorkoutEntity {
-    convenience init (countDowns: [SaveableCountDown], viewContext: NSManagedObjectContext) {
+    convenience init (countDowns: [ChangeToCoreDataEntity], viewContext: NSManagedObjectContext) {
         self.init(context: viewContext)
         self.countDowns = NSSet(array: countDowns.map{CountDownEntity(saveableCountDown: $0, viewContext: viewContext)})
         self.startedAt = countDowns.first?.startTime

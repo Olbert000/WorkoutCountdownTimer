@@ -7,11 +7,8 @@
 
 import Foundation
 
-//TODO: Make codeable.
-
+//Rename to live countdown!!
 struct CountDown {
-    
-    let id: UUID
     let countingDownFrom: TimeInterval
     var startStopTimes: [Date]
     
@@ -25,15 +22,14 @@ struct CountDown {
             .reduce(0,+)
     }
     
-    init(id: UUID = UUID(), startedAt: Date, countingDownFrom: TimeInterval) {
-        self.id = id
+    init(startedAt: Date, countingDownFrom: TimeInterval) {
         self.startStopTimes = [startedAt]
         self.countingDownFrom = countingDownFrom
     }
 }
 
-struct SaveableCountDown : Identifiable, Hashable{
-    let id: UUID
+//Rename to completedCountDown
+struct SaveableCountDown: Hashable {
     let countingDownFrom: TimeInterval
     let overTime: TimeInterval
     let startTime: Date
@@ -42,24 +38,26 @@ struct SaveableCountDown : Identifiable, Hashable{
         return countingDownFrom + overTime
     }
   
-    init(id: UUID = UUID(), countingDownFrom: TimeInterval, overTime: TimeInterval, startTime: Date) {
-        self.id = id
+    init(countingDownFrom: TimeInterval, overTime: TimeInterval, startTime: Date) {
         self.countingDownFrom = countingDownFrom
         self.overTime = overTime
         self.startTime = startTime
     }
 }
 
-struct WorkOut: Identifiable, Hashable {
-    let id: UUID
+//I don't think I need this!
+struct Workout {
     let countDowns: [SaveableCountDown]
     
     var date: Date? {
         return countDowns.first?.startTime
     }
     
-    init(id: UUID = UUID(), countDowns: [SaveableCountDown]) {
-        self.id = id
+    init(countDowns: [SaveableCountDown]) {
         self.countDowns = countDowns
     }
+}
+
+enum CountDownError: Error {
+    case countDownHasNoData
 }

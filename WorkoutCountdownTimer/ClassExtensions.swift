@@ -8,6 +8,8 @@
 import Foundation
 
 
+
+
 extension Date {
     static func - (lhs: Date, rhs: Date) -> TimeInterval {
         return lhs.timeIntervalSinceReferenceDate - rhs.timeIntervalSinceReferenceDate
@@ -57,14 +59,45 @@ extension TimeInterval {
     }
 }
 
-/*
-extension SaveableCountDownEntity {
-    convenience init (saveableCountDown: SaveableCountDown) {
-        self.init()
-        self.id = saveableCountDown.id
-        self.countingDownFrom = saveableCountDown.countingDownFrom
-        self.overTime = saveableCountDown.overTime
-        self.startTime = saveableCountDown.startTime
+extension CountDownEntity {
+//    convenience init (saveableCountDown: SaveableCountDown) {
+//        self.init()
+//        self.countingDownFrom = saveableCountDown.countingDownFrom
+//        self.overTime = saveableCountDown.overTime
+//        self.startTime = saveableCountDown.startTime
+//    }
+    
+    static func < (lhs: CountDownEntity, rhs: CountDownEntity) throws -> Bool {
+        guard
+            let lhsStartTime = lhs.startTime,
+            let rhsStartTime = rhs.startTime
+        else {
+ //           throw CountDownError.countDownHasNoData
+            return true
+        }
+        return lhsStartTime < rhsStartTime
+    }
+    
+    static func > (lhs: CountDownEntity, rhs: CountDownEntity) throws -> Bool {
+        guard
+            let lhsStartTime = lhs.startTime,
+            let rhsStartTime = rhs.startTime
+        else {
+//            throw CountDownError.countDownHasNoData
+            return true
+        }
+        return lhsStartTime > rhsStartTime
     }
 }
-*/
+
+extension WorkoutEntity {
+//    convenience init (countDowns: [SaveableCountDown]) {
+//        self.init()
+//        self.countDowns = countDowns
+//    }
+//    
+//    convenience init (workout: Workout) {
+//        self.init()
+//        self.countDowns = workout.countDowns
+//    }
+}

@@ -13,7 +13,7 @@ struct WorkoutCountdownTimerApp: App {
 
     var body: some Scene {
         WindowGroup {
-            LandingView()
+            ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

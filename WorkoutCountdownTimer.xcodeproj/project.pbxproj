@@ -30,6 +30,7 @@
 		5E04518C28A3C00000F09872 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04518028A3C00000F09872 /* TimerView.swift */; };
 		5E04518D28A3C00000F09872 /* CountDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04518328A3C00000F09872 /* CountDownView.swift */; };
 		5E04518E28A3C00000F09872 /* TimerButtonsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04518128A3C00000F09872 /* TimerButtonsRowView.swift */; };
+		5E53965D28A5DF9100F1C421 /* TimesListViewPassingInList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E53965C28A5DF9100F1C421 /* TimesListViewPassingInList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		5E04518328A3C00000F09872 /* CountDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownView.swift; sourceTree = "<group>"; };
 		5E04518428A3C00000F09872 /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		5E04518528A3C00000F09872 /* TimesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesListView.swift; sourceTree = "<group>"; };
+		5E53965C28A5DF9100F1C421 /* TimesListViewPassingInList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesListViewPassingInList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +191,7 @@
 				5E04517E28A3C00000F09872 /* TimerButtonView.swift */,
 				5E04518028A3C00000F09872 /* TimerView.swift */,
 				5E04518528A3C00000F09872 /* TimesListView.swift */,
+				5E53965C28A5DF9100F1C421 /* TimesListViewPassingInList.swift */,
 			);
 			path = "Countdown Views";
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E53965D28A5DF9100F1C421 /* TimesListViewPassingInList.swift in Sources */,
 				5E04517B28A3BF8200F09872 /* TimerViewModel.swift in Sources */,
 				5E04514928A382AC00F09872 /* Persistence.swift in Sources */,
 				5E04518928A3C00000F09872 /* Styles.swift in Sources */,

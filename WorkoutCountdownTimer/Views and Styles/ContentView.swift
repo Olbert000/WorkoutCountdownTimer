@@ -9,6 +9,7 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
+    @StateObject private var timerViewModel = TimerViewModel()
     @Environment(\.managedObjectContext) private var viewContext
     
     @FetchRequest(
@@ -32,35 +33,14 @@ struct ContentView: View {
                 }
                 .onDelete(perform: deleteItems)
             }
-//            .toolbar {
-//                ToolbarItem(placement: .navigationBarTrailing) {
-//                    EditButton()
-//                }
-//                ToolbarItem {
-//                    Button(action: addItem) {
-//                        Label("Add Item", systemImage: "plus")
-//                    }
-//                }
-//            }
-//            Text("Select an item")
-        }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    EditButton()
+                }
+            }
+            Text("Select an item")
+        }.environmentObject(timerViewModel)
     }
-
-//    private func addItem() {
-//        withAnimation {
-//            let newItem = Item(context: viewContext)
-//            newItem.timestamp = Date()
-//
-//            do {
-//                try viewContext.save()
-//            } catch {
-//                // Replace this implementation with code to handle the error appropriately.
-//                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-//                let nsError = error as NSError
-//                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-//            }
-//        }
-//    }
 
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
@@ -76,7 +56,6 @@ struct ContentView: View {
             }
         }
     }
-    
 }
 
 private let itemFormatter: DateFormatter = {

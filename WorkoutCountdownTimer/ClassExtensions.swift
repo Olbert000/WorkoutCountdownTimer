@@ -88,6 +88,11 @@ extension CountDownEntity {
         }
         return lhsStartTime > rhsStartTime
     }
+    
+    var totalTimeForThisCountDown: TimeInterval {
+        return countingDownFrom + overTime
+    }
+
 }
 
 extension WorkoutEntity {

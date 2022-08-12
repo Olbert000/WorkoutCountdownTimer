@@ -11,7 +11,8 @@
 import SwiftUI
 
 struct CountDownView: View {
-    @StateObject private var timerViewModel = TimerViewModel()
+    @EnvironmentObject var timerViewModel: TimerViewModel
+
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) private  var dismiss
 
@@ -34,7 +35,6 @@ struct CountDownView: View {
                 .withResetButtonStyle(color: Color.green)
             }
         }
-        .environmentObject(timerViewModel)
     }
 }
 

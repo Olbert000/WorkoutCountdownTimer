@@ -26,7 +26,6 @@
 		5E04518828A3C00000F09872 /* TimesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04518528A3C00000F09872 /* TimesListView.swift */; };
 		5E04518928A3C00000F09872 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04518228A3C00000F09872 /* Styles.swift */; };
 		5E04518A28A3C00000F09872 /* ControlButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04517D28A3C00000F09872 /* ControlButtonsView.swift */; };
-		5E04518B28A3C00000F09872 /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04518428A3C00000F09872 /* LandingView.swift */; };
 		5E04518C28A3C00000F09872 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04518028A3C00000F09872 /* TimerView.swift */; };
 		5E04518D28A3C00000F09872 /* CountDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04518328A3C00000F09872 /* CountDownView.swift */; };
 		5E04518E28A3C00000F09872 /* TimerButtonsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04518128A3C00000F09872 /* TimerButtonsRowView.swift */; };
@@ -76,7 +75,6 @@
 		5E04518128A3C00000F09872 /* TimerButtonsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerButtonsRowView.swift; sourceTree = "<group>"; };
 		5E04518228A3C00000F09872 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		5E04518328A3C00000F09872 /* CountDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownView.swift; sourceTree = "<group>"; };
-		5E04518428A3C00000F09872 /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		5E04518528A3C00000F09872 /* TimesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesListView.swift; sourceTree = "<group>"; };
 		5E53965C28A5DF9100F1C421 /* TimesListViewPassingInList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesListViewPassingInList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -175,7 +173,6 @@
 			children = (
 				5E04518228A3C00000F09872 /* Styles.swift */,
 				5E04514128A382AA00F09872 /* ContentView.swift */,
-				5E04518428A3C00000F09872 /* LandingView.swift */,
 				5E04519028A3C07C00F09872 /* Countdown Views */,
 			);
 			path = "Views and Styles";
@@ -335,7 +332,6 @@
 				5E04518D28A3C00000F09872 /* CountDownView.swift in Sources */,
 				5E04517828A3BF8200F09872 /* TimerData.swift in Sources */,
 				5E04518C28A3C00000F09872 /* TimerView.swift in Sources */,
-				5E04518B28A3C00000F09872 /* LandingView.swift in Sources */,
 				5E04518A28A3C00000F09872 /* ControlButtonsView.swift in Sources */,
 				5E04517728A3BF8200F09872 /* TimerFunctions.swift in Sources */,
 				5E04518E28A3C00000F09872 /* TimerButtonsRowView.swift in Sources */,

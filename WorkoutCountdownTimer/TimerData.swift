@@ -45,19 +45,6 @@ struct SaveableCountDown: Hashable {
     }
 }
 
-//I don't think I need this!
-struct Workout {
-    let countDowns: [SaveableCountDown]
-    
-    var date: Date? {
-        return countDowns.first?.startTime
-    }
-    
-    init(countDowns: [SaveableCountDown]) {
-        self.countDowns = countDowns
-    }
-}
-
 enum CountDownError: Error {
     case countDownHasNoData
 }

@@ -12,7 +12,9 @@ import SwiftUI
 
 struct CountDownView: View {
     @StateObject private var timerViewModel = TimerViewModel()
-    
+    @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.dismiss) private  var dismiss
+
     var body: some View {
         ZStack {
             Color.black
@@ -23,6 +25,13 @@ struct CountDownView: View {
                 TimerView()
                 TimesListView()
                 ControlButtonsView()
+                Button() {
+                    timerViewModel.saveWorkout(viewContext: viewContext)
+                    dismiss()
+                } label: {
+                    Text("save")
+                }
+                .withResetButtonStyle(color: Color.green)
             }
         }
         .environmentObject(timerViewModel)

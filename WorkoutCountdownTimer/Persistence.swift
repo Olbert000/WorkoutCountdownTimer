@@ -40,16 +40,16 @@ struct PersistenceController {
 extension PersistenceController {
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
-        let context = result.container.viewContext
+        let viewContext = result.container.viewContext
         for _ in 0..<10 {
-            let newCountDownEntity = CountDownEntity(context: context)
+            let newCountDownEntity = CountDownEntity(context: viewContext)
             newCountDownEntity.startTime = Date()
             newCountDownEntity.overTime = 20
             newCountDownEntity.countingDownFrom = 30
             print("Creating Entity!")
         }
         do {
-            try context.save()
+            try viewContext.save()
             print("Saving Entity!")
 
         } catch {

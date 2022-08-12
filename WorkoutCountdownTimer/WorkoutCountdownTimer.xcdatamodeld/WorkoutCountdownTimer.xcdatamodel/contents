@@ -10,6 +10,7 @@
         <attribute name="timeStamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <entity name="WorkoutEntity" representedClassName="WorkoutEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="startedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="countDowns" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CountDownEntity" inverseName="workout" inverseEntity="CountDownEntity"/>
     </entity>
 </model>

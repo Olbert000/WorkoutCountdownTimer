@@ -184,8 +184,8 @@
 		5E04519028A3C07C00F09872 /* Countdown Views */ = {
 			isa = PBXGroup;
 			children = (
-				5E04517D28A3C00000F09872 /* ControlButtonsView.swift */,
 				5E04518328A3C00000F09872 /* CountDownView.swift */,
+				5E04517D28A3C00000F09872 /* ControlButtonsView.swift */,
 				5E04517F28A3C00000F09872 /* TimeHistoryTextView.swift */,
 				5E04518128A3C00000F09872 /* TimerButtonsRowView.swift */,
 				5E04517E28A3C00000F09872 /* TimerButtonView.swift */,

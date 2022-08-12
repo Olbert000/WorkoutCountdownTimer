@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import CoreData
 
 
 
@@ -60,12 +60,12 @@ extension TimeInterval {
 }
 
 extension CountDownEntity {
-//    convenience init (saveableCountDown: SaveableCountDown) {
-//        self.init()
-//        self.countingDownFrom = saveableCountDown.countingDownFrom
-//        self.overTime = saveableCountDown.overTime
-//        self.startTime = saveableCountDown.startTime
-//    }
+    convenience init (saveableCountDown: SaveableCountDown, viewContext: NSManagedObjectContext) {
+        self.init(context: viewContext)
+        self.countingDownFrom = saveableCountDown.countingDownFrom
+        self.overTime = saveableCountDown.overTime
+        self.startTime = saveableCountDown.startTime
+    }
     
     static func < (lhs: CountDownEntity, rhs: CountDownEntity) throws -> Bool {
         guard
@@ -91,13 +91,9 @@ extension CountDownEntity {
 }
 
 extension WorkoutEntity {
-//    convenience init (countDowns: [SaveableCountDown]) {
-//        self.init()
-//        self.countDowns = countDowns
-//    }
-//    
-//    convenience init (workout: Workout) {
-//        self.init()
-//        self.countDowns = workout.countDowns
-//    }
+    convenience init (countDowns: [SaveableCountDown], viewContext: NSManagedObjectContext) {
+        self.init(context: viewContext)
+        self.countDowns = NSSet(array: countDowns.map{CountDownEntity(saveableCountDown: $0, viewContext: viewContext)})
+        self.startedAt = countDowns.first?.startTime
+    }
 }

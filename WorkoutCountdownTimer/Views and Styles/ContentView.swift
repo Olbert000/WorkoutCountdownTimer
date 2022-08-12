@@ -11,36 +11,27 @@ import CoreData
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
-//    @FetchRequest(
-//        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timeStamp, ascending: true)],
-//        animation: .default)
-    
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \CountDownEntity.startTime, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \WorkoutEntity.startedAt, ascending: true)],
         animation: .default)
     
-    private var countDowns: FetchedResults<CountDownEntity>
-//    private var items: FetchedResults<Item>
+    private var workouts: FetchedResults<WorkoutEntity>
     
     var body: some View {
-        
-        let _ = createDataFirst()
-        
-        
-        
-        NavigationView {
-//            List {
-//                ForEach(countDowns) { countDown in
-//                    NavigationLink {
-//                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-//                    } label: {
-//                        Text(item.timestamp!, formatter: itemFormatter)
-//                    }
-//                }
-//                .onDelete(perform: deleteItems)
-//            }
-            TimesListViewPassingInList(countDownList: Array(countDowns))
-            Text("Hi")
+        NavigationStack {
+            NavigationLink(destination: CountDownView()) {
+                Text("StartCounting")
+            }
+            List {
+                ForEach(workouts) { workout in
+                    NavigationLink {
+                        Text("Workout at \(workout.startedAt!, formatter: itemFormatter)")
+                    } label: {
+                        Text(workout.startedAt!, formatter: itemFormatter)
+                    }
+                }
+                .onDelete(perform: deleteItems)
+            }
 //            .toolbar {
 //                ToolbarItem(placement: .navigationBarTrailing) {
 //                    EditButton()
@@ -71,42 +62,21 @@ struct ContentView: View {
 //        }
 //    }
 
-//    private func deleteItems(offsets: IndexSet) {
-//        withAnimation {
-//            offsets.map { items[$0] }.forEach(viewContext.delete)
-//
-//            do {
-//                try viewContext.save()
-//            } catch {
-//                // Replace this implementation with code to handle the error appropriately.
-//                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-//                let nsError = error as NSError
-//                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-//            }
-//        }
-//    }
-    
-    func createDataFirst () {
-        let result = PersistenceController.shared
-        let context = result.container.viewContext
-        for _ in 0..<10 {
-            let newCountDownEntity = CountDownEntity(context: context)
-            newCountDownEntity.startTime = Date()
-            newCountDownEntity.overTime = 20
-            newCountDownEntity.countingDownFrom = 30
-            print("Creating Entity!")
-        }
-        do {
-            try context.save()
-            print("Saving Entity!")
+    private func deleteItems(offsets: IndexSet) {
+        withAnimation {
+            offsets.map { workouts[$0] }.forEach(viewContext.delete)
 
-        } catch {
-            // Replace this implementation with code to handle the error appropriately.
-            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            do {
+                try viewContext.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
         }
     }
+    
 }
 
 private let itemFormatter: DateFormatter = {

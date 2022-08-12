@@ -6,10 +6,10 @@
 //
 
 import Foundation
+import CoreData
 
-//TODO: Check if it is ok to just turn on and timer for life of app?
-//TODO: Pull the used variables out of the views and make them lets at the start of the function
-//TODO: Pull timer from wrapper class and make it a 'let'. It doesn't need a wrapper with no start and stop.
+//TODO: Make countDOwnTimes a user setting.
+
 @MainActor class TimerViewModel: ObservableObject{
     static let countDownTimes: [TimeInterval] = [30,60,90,180,300,600]
     static let timerInterval: Double = 0.1
@@ -68,6 +68,13 @@ import Foundation
     func resetAll() {
         countDown = nil
         countDownTimerHistory = []
+    }
+    
+    func saveWorkout(viewContext: NSManagedObjectContext) {
+        let _ = WorkoutEntity(countDowns: countDownTimerHistory, viewContext: viewContext)
+        try? viewContext.save()
+        resetAll()
+        
     }
     
     @objc private func tick() {

@@ -8,7 +8,7 @@
 import Foundation
 
 //Rename to live countdown!!
-struct LiveCountDown {
+struct LiveCountdown {
     let countingDownFrom: TimeInterval
     var startStopTimes: [Date]
     
@@ -28,13 +28,13 @@ struct LiveCountDown {
     }
 }
 
-//Rename to completedCountDown
+//Rename to completedCountdown
 struct ChangeToCoreDataEntity: Hashable {
     let countingDownFrom: TimeInterval
     let overTime: TimeInterval
     let startTime: Date
 
-    var totalTimeForThisCountDown: TimeInterval {
+    var totalTimeForThisCountdown: TimeInterval {
         return countingDownFrom + overTime
     }
   
@@ -45,6 +45,6 @@ struct ChangeToCoreDataEntity: Hashable {
     }
 }
 
-enum CountDownError: Error {
-    case countDownHasNoData
+enum CountdownError: Error {
+    case countdownHasNoData
 }

@@ -11,17 +11,17 @@ struct TimerView: View {
     @EnvironmentObject var timerViewModel: TimerViewModel
     
     var body: some View {
-        let countDownHasCommenced = timerViewModel.countDownHasCommenced
-        let countDownTimerHisotryCountPlusOne = timerViewModel.countDownTimerHistory.count+1
+        let countdownHasCommenced = timerViewModel.countdownHasCommenced
+        let countdownTimerHisotryCountPlusOne = timerViewModel.countdownTimerHistory.count+1
         if
             let remainingTime = timerViewModel.remainingTime,
-            let currentCountDownExpired = timerViewModel.currentCountDownHasExpired,
-            countDownHasCommenced {
+            let currentCountdownExpired = timerViewModel.currentCountdownHasExpired,
+            countdownHasCommenced {
             ZStack {
                 Text(remainingTime.string(showDeciseconds: true))
-                    .withMainTimerStyle(currentCountDownExpired)
+                    .withMainTimerStyle(currentCountdownExpired)
                 HStack{
-                    Text("\(countDownTimerHisotryCountPlusOne)")
+                    Text("\(countdownTimerHisotryCountPlusOne)")
                         .withCountStyle()
                     Spacer()
                 }

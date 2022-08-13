@@ -9,14 +9,14 @@ import SwiftUI
 
 struct TimerButtonsRowView: View {
     var body: some View {
-        let countDownTimes: [TimeInterval] = TimerViewModel.countDownTimes
+        let countdownTimes: [TimeInterval] = TimerViewModel.countdownTimes
         let columns = [
             GridItem(.adaptive(minimum: 90))
         ]
         
         LazyVGrid(columns: columns, spacing: 20) {
-            ForEach(countDownTimes, id: \.self) {countDownTime in
-                TimerButtonView(countDownTime: countDownTime)
+            ForEach(countdownTimes, id: \.self) {countdownTime in
+                TimerButtonView(countdownTime: countdownTime)
             }
         }
         .padding(.horizontal)

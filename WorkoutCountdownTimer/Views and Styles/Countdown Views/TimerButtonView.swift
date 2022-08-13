@@ -9,13 +9,13 @@ import SwiftUI
 
 struct TimerButtonView: View {
     @EnvironmentObject var timerViewModel: TimerViewModel
-    let countDownTime: TimeInterval
+    let countdownTime: TimeInterval
     
     var body: some View {        
         Button() {
-            timerViewModel.commenceCountDown(from: countDownTime)
+            timerViewModel.commenceCountdown(from: countdownTime)
         } label: {
-            Text(countDownTime.string(short: true))
+            Text(countdownTime.string(short: true))
                 .frame(width: 50)
         }
         .withTimerButtonStyle(color: Color.blue)
@@ -24,7 +24,7 @@ struct TimerButtonView: View {
 /*
 struct TimerButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerButtonView(timersModel:TimersModel.exampleTimersModel, countDownTime: 180)
+        TimerButtonView(timersModel:TimersModel.exampleTimersModel, countdownTime: 180)
     }
 }
 */

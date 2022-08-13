@@ -9,11 +9,11 @@ import Foundation
 /*
 extension TimersModel {
     //Preview Data
-    static let exampleTimersModel = TimersModel(CustomCountDownTimer.timeDataPoint, CustomCountDownTimer.timeDataPoint)
+    static let exampleTimersModel = TimersModel(CustomCountdownTimer.timeDataPoint, CustomCountdownTimer.timeDataPoint)
 }
 
-extension CustomCountDownTimer {
+extension CustomCountdownTimer {
     //Preview Data
-    static let timeDataPoint = CustomCountDownTimer(Date.now, Date.now, TimeInterval(90), TimeInterval(100))
+    static let timeDataPoint = CustomCountdownTimer(Date.now, Date.now, TimeInterval(90), TimeInterval(100))
 }
 */

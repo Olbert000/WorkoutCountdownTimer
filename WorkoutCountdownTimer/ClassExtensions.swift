@@ -18,7 +18,7 @@ extension Date {
 
 extension Array where Element == ChangeToCoreDataEntity {
     var cumulativeTimes : [TimeInterval] {
-            let totalTimes = self.map {$0.totalTimeForThisCountDown}.reversed()
+            let totalTimes = self.map {$0.totalTimeForThisCountdown}.reversed()
             return totalTimes.reduce(into: []) { $0.append(($0.last ?? 0) + $1) }.reversed()
     }
 }
@@ -61,46 +61,46 @@ extension TimeInterval {
 
 //TODO: Change name to SaveableCountdown
 
-extension CountDownEntity {
-    convenience init (saveableCountDown: ChangeToCoreDataEntity, viewContext: NSManagedObjectContext) {
+extension CountdownEntity {
+    convenience init (saveableCountdown: ChangeToCoreDataEntity, viewContext: NSManagedObjectContext) {
         self.init(context: viewContext)
-        self.countingDownFrom = saveableCountDown.countingDownFrom
-        self.overTime = saveableCountDown.overTime
-        self.startTime = saveableCountDown.startTime
+        self.countingDownFrom = saveableCountdown.countingDownFrom
+        self.overTime = saveableCountdown.overTime
+        self.startTime = saveableCountdown.startTime
     }
     
-    static func < (lhs: CountDownEntity, rhs: CountDownEntity) throws -> Bool {
+    static func < (lhs: CountdownEntity, rhs: CountdownEntity) throws -> Bool {
         guard
             let lhsStartTime = lhs.startTime,
             let rhsStartTime = rhs.startTime
         else {
- //           throw CountDownError.countDownHasNoData
+ //           throw CountdownError.countdownHasNoData
             return true
         }
         return lhsStartTime < rhsStartTime
     }
     
-    static func > (lhs: CountDownEntity, rhs: CountDownEntity) throws -> Bool {
+    static func > (lhs: CountdownEntity, rhs: CountdownEntity) throws -> Bool {
         guard
             let lhsStartTime = lhs.startTime,
             let rhsStartTime = rhs.startTime
         else {
-//            throw CountDownError.countDownHasNoData
+//            throw CountdownError.countdownHasNoData
             return true
         }
         return lhsStartTime > rhsStartTime
     }
     
-    var totalTimeForThisCountDown: TimeInterval {
+    var totalTimeForThisCountdown: TimeInterval {
         return countingDownFrom + overTime
     }
 
 }
 
 extension WorkoutEntity {
-    convenience init (countDowns: [ChangeToCoreDataEntity], viewContext: NSManagedObjectContext) {
+    convenience init (countdowns: [ChangeToCoreDataEntity], viewContext: NSManagedObjectContext) {
         self.init(context: viewContext)
-        self.countDowns = NSSet(array: countDowns.map{CountDownEntity(saveableCountDown: $0, viewContext: viewContext)})
-        self.startedAt = countDowns.first?.startTime
+        self.countdowns = NSSet(array: countdowns.map{CountdownEntity(saveableCountdown: $0, viewContext: viewContext)})
+        self.startedAt = countdowns.first?.startTime
     }
 }

@@ -20,7 +20,7 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack {
-            NavigationLink(destination: CountDownView()) {
+            NavigationLink(destination: CountdownView()) {
                 Text("StartCounting")
             }
             List {

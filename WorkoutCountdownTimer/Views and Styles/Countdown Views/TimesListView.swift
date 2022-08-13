@@ -11,9 +11,9 @@ struct TimesListView: View {
     @EnvironmentObject var timerViewModel: TimerViewModel
     
     var body: some View {
-        let countDownTimerHistory = timerViewModel.countDownTimerHistory
+        let countdownTimerHistory = timerViewModel.countdownTimerHistory
 
-        List(Array(zip(countDownTimerHistory, countDownTimerHistory.cumulativeTimes)), id: \.self.0) { timeInterval, cumulativeTime in
+        List(Array(zip(countdownTimerHistory, countdownTimerHistory.cumulativeTimes)), id: \.self.0) { timeInterval, cumulativeTime in
             HStack {
                 TimeHistoryTextView(timeInterval: timeInterval.countingDownFrom, color: Color.green, totalTime: false)
                     .padding(2)

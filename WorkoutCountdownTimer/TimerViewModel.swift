@@ -9,58 +9,57 @@ import Foundation
 import CoreData
 
 //TODO: Make countdownTimes a user setting.
-//TODO: Change countDown to countdown - countdown is a complete word on it's own (noun version).
-//TODO: Remove ChangeToCoreDataEntity and replace with CountDownEntity.
+//TODO: Remove ChangeToCoreDataEntity and replace with CountdownEntity.
 
 @MainActor class TimerViewModel: ObservableObject{
-    static let countDownTimes: [TimeInterval] = [30,60,90,180,300,600]
+    static let countdownTimes: [TimeInterval] = [30,60,90,180,300,600]
     static let timerInterval: Double = 0.1
     
-    @Published var liveCountdown: LiveCountDown?
-    @Published var countDownTimerHistory: [ChangeToCoreDataEntity]
+    @Published var liveCountdown: LiveCountdown?
+    @Published var countdownTimerHistory: [ChangeToCoreDataEntity]
     
     @Published private var currentTime: Date
     private var timer: Timer
  
-    var countDownHasCommenced: Bool {
+    var countdownHasCommenced: Bool {
         return liveCountdown != nil
     }
     
-    var currentCountDownHasExpired: Bool? {
+    var currentCountdownHasExpired: Bool? {
         guard
             let countingDownFrom = liveCountdown?.countingDownFrom,
-            let currentCountDownTime = currentCountDownTime
+            let currentCountdownTime = currentCountdownTime
             else { return nil }
-        return currentCountDownTime > countingDownFrom
+        return currentCountdownTime > countingDownFrom
     }
     
-    var totalTimeForThisCountDown: TimeInterval? {
+    var totalTimeForThisCountdown: TimeInterval? {
         return liveCountdown?.totalTimeForThisCountdown(currentTime: currentTime)
     }
     
-    var currentCountDownTime: TimeInterval? {
+    var currentCountdownTime: TimeInterval? {
         guard
             let countingDownFrom = liveCountdown?.countingDownFrom,
-            let totalTimeForThisCountDown = totalTimeForThisCountDown
+            let totalTimeForThisCountdown = totalTimeForThisCountdown
             else { return nil }
-        return countingDownFrom - totalTimeForThisCountDown
+        return countingDownFrom - totalTimeForThisCountdown
     }
     
     var remainingTime: TimeInterval? {
         guard
             let countingDownFrom = liveCountdown?.countingDownFrom,
-            let currentCountDownTime = currentCountDownTime
+            let currentCountdownTime = currentCountdownTime
             else { return nil }
-        return countingDownFrom - currentCountDownTime
+        return countingDownFrom - currentCountdownTime
     }
     
     //UI Methods:
-    func commenceCountDown(from: TimeInterval) {
+    func commenceCountdown(from: TimeInterval) {
         let now = Date.now
-        if let saveableCountDown = TimerFunctions.transformCountDownToHistory(totalCountDownTime: currentCountDownTime, countingDownFrom: liveCountdown?.countingDownFrom, startTime: liveCountdown?.startStopTimes.first) {
-            countDownTimerHistory.insert(saveableCountDown, at: 0)
+        if let saveableCountdown = TimerFunctions.transformCountdownToHistory(totalCountdownTime: currentCountdownTime, countingDownFrom: liveCountdown?.countingDownFrom, startTime: liveCountdown?.startStopTimes.first) {
+            countdownTimerHistory.insert(saveableCountdown, at: 0)
         }
-        liveCountdown = LiveCountDown(startedAt: now, countingDownFrom: from)
+        liveCountdown = LiveCountdown(startedAt: now, countingDownFrom: from)
     }
     
     func playPauseTimer() {
@@ -69,11 +68,11 @@ import CoreData
     
     func resetAll() {
         liveCountdown = nil
-        countDownTimerHistory = []
+        countdownTimerHistory = []
     }
     
     func saveWorkout(viewContext: NSManagedObjectContext) {
-        let _ = WorkoutEntity(countDowns: countDownTimerHistory, viewContext: viewContext)
+        let _ = WorkoutEntity(countdowns: countdownTimerHistory, viewContext: viewContext)
         try? viewContext.save()
         resetAll()
         
@@ -86,7 +85,7 @@ import CoreData
     
     init(){
         self.liveCountdown = nil
-        self.countDownTimerHistory = []
+        self.countdownTimerHistory = []
         self.currentTime = Date.now
         self.timer = Timer()
    //     self.timer = Timer.scheduledTimer(timeInterval: TimerViewModel.timerInterval, target: self, selector: #selector(tick), userInfo: nil, repeats: true)

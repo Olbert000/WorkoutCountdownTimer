@@ -9,11 +9,11 @@ import SwiftUI
 import CoreData
 
 struct TimesListViewPassingInList: View {
-    var countDownList: [CountDownEntity]
+    var countdownList: [CountdownEntity]
     
     var body: some View {
-//        List(Array(zip(countDownList, countDownList.cumulativeTimes)), id: \.self.0) { timeInterval, cumulativeTime in
-        List(countDownList, id: \.self) { timeInterval in
+//        List(Array(zip(countdownList, countdownList.cumulativeTimes)), id: \.self.0) { timeInterval, cumulativeTime in
+        List(countdownList, id: \.self) { timeInterval in
             HStack {
                 TimeHistoryTextView(timeInterval: timeInterval.countingDownFrom, color: Color.green, totalTime: false)
                     .padding(2)

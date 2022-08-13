@@ -10,7 +10,7 @@
 
 import SwiftUI
 
-struct CountDownView: View {
+struct CountdownView: View {
     @EnvironmentObject var timerViewModel: TimerViewModel
 
     @Environment(\.managedObjectContext) private var viewContext
@@ -38,8 +38,8 @@ struct CountDownView: View {
     }
 }
 
-struct CountDownView_Previews: PreviewProvider {
+struct CountdownView_Previews: PreviewProvider {
     static var previews: some View {
-        CountDownView()
+        CountdownView()
     }
 }

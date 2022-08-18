@@ -16,8 +16,8 @@ import CoreData
     static let timerInterval: TimeInterval = 0.1
     
     @Published var liveCountdown: LiveCountdown?
-    @Published var countdownTimerHistory: WorkoutEntity
-    
+    var countdownTimerHistory: WorkoutEntity
+
     @Published private var currentTime: Date
     private var timer: Timer
     private var viewContext: NSManagedObjectContext
@@ -57,14 +57,10 @@ import CoreData
         resetAll()
     }
     
-    @objc private func tick() {
-        let now = Date.now
-        currentTime = now
-    }
-    
     init(){
+        let now = Date.now
         self.liveCountdown = nil
-        self.currentTime = Date.now
+        self.currentTime = now
         self.viewContext = PersistenceController.shared.container.viewContext
         self.countdownTimerHistory = WorkoutEntity(viewContext: viewContext)
         self.timer = Timer()

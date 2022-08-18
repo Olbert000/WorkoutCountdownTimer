@@ -75,7 +75,6 @@ extension CountdownEntity {
     }
     
     var startTime: Date {
-//        return startTime_ ?? Date.now
         return startTime_!
     }
     
@@ -110,7 +109,7 @@ extension WorkoutEntity {
     
     var startTime: Date {
         guard let startTime = countdowns.first?.startTime else {
-            return Date.now
+            return Date.init(timeIntervalSince1970: 0)
         }
         return startTime
     }

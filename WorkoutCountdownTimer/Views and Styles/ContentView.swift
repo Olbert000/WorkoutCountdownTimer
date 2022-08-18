@@ -11,7 +11,6 @@ import CoreData
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @StateObject private var timerViewModel = TimerViewModel()
-
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \WorkoutEntity.startTime_, ascending: true)],
         predicate: NSPredicate(format: "saved = %i", true),

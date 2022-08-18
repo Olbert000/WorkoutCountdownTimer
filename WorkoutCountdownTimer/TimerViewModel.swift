@@ -13,53 +13,33 @@ import CoreData
 
 @MainActor class TimerViewModel: ObservableObject{
     static let countdownTimes: [TimeInterval] = [30,60,90,180,300,600]
-    static let timerInterval: Double = 0.1
+    static let timerInterval: TimeInterval = 0.1
     
     @Published var liveCountdown: LiveCountdown?
-    @Published var countdownTimerHistory: [ChangeToCoreDataEntity]
+    @Published var countdownTimerHistory: WorkoutEntity
     
     @Published private var currentTime: Date
     private var timer: Timer
+    private var viewContext: NSManagedObjectContext
  
+    var remainingTime: TimeInterval? {
+        return liveCountdown?.remainingTime(at: currentTime)
+    }
+    
+    var currentCountdownHasExpired: Bool? {
+        return liveCountdown?.currentCountdownExpired(by: currentTime)
+    }
+    
     var countdownHasCommenced: Bool {
         return liveCountdown != nil
     }
     
-    var currentCountdownHasExpired: Bool? {
-        guard
-            let countingDownFrom = liveCountdown?.countingDownFrom,
-            let currentCountdownTime = currentCountdownTime
-            else { return nil }
-        return currentCountdownTime > countingDownFrom
-    }
-    
-    var totalTimeForThisCountdown: TimeInterval? {
-        return liveCountdown?.totalTimeForThisCountdown(currentTime: currentTime)
-    }
-    
-    var currentCountdownTime: TimeInterval? {
-        guard
-            let countingDownFrom = liveCountdown?.countingDownFrom,
-            let totalTimeForThisCountdown = totalTimeForThisCountdown
-            else { return nil }
-        return countingDownFrom - totalTimeForThisCountdown
-    }
-    
-    var remainingTime: TimeInterval? {
-        guard
-            let countingDownFrom = liveCountdown?.countingDownFrom,
-            let currentCountdownTime = currentCountdownTime
-            else { return nil }
-        return countingDownFrom - currentCountdownTime
-    }
-    
     //UI Methods:
     func commenceCountdown(from: TimeInterval) {
-        let now = Date.now
-        if let saveableCountdown = TimerFunctions.transformCountdownToHistory(totalCountdownTime: currentCountdownTime, countingDownFrom: liveCountdown?.countingDownFrom, startTime: liveCountdown?.startStopTimes.first) {
-            countdownTimerHistory.insert(saveableCountdown, at: 0)
+        if let liveCountdown = liveCountdown {
+            countdownTimerHistory.insert(CountdownEntity(liveCountdown: liveCountdown, at: currentTime, workout: countdownTimerHistory, viewContext: viewContext))
         }
-        liveCountdown = LiveCountdown(startedAt: now, countingDownFrom: from)
+        liveCountdown = LiveCountdown(startedAt: currentTime, countingDownFrom: from)
     }
     
     func playPauseTimer() {
@@ -68,14 +48,13 @@ import CoreData
     
     func resetAll() {
         liveCountdown = nil
-        countdownTimerHistory = []
+        countdownTimerHistory = WorkoutEntity(viewContext: viewContext)
     }
     
-    func saveWorkout(viewContext: NSManagedObjectContext) {
-        let _ = WorkoutEntity(countdowns: countdownTimerHistory, viewContext: viewContext)
+    func saveWorkout() {
+        countdownTimerHistory.saved = true
         try? viewContext.save()
         resetAll()
-        
     }
     
     @objc private func tick() {
@@ -85,10 +64,10 @@ import CoreData
     
     init(){
         self.liveCountdown = nil
-        self.countdownTimerHistory = []
         self.currentTime = Date.now
+        self.viewContext = PersistenceController.shared.container.viewContext
+        self.countdownTimerHistory = WorkoutEntity(viewContext: viewContext)
         self.timer = Timer()
-   //     self.timer = Timer.scheduledTimer(timeInterval: TimerViewModel.timerInterval, target: self, selector: #selector(tick), userInfo: nil, repeats: true)
         self.timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] _ in
             let now = Date.now
             DispatchQueue.main.async { [weak self] in

@@ -43,7 +43,7 @@ extension PersistenceController {
         let viewContext = result.container.viewContext
         for _ in 0..<10 {
             let newCountdownEntity = CountdownEntity(context: viewContext)
-            newCountdownEntity.startTime = Date()
+            newCountdownEntity.startTime_ = Date()
             newCountdownEntity.overTime = 20
             newCountdownEntity.countingDownFrom = 30
             print("Creating Entity!")

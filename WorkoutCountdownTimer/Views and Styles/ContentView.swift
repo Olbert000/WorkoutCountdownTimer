@@ -9,11 +9,12 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
-    @StateObject private var timerViewModel = TimerViewModel()
     @Environment(\.managedObjectContext) private var viewContext
-    
+    @StateObject private var timerViewModel = TimerViewModel()
+
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \WorkoutEntity.startedAt, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \WorkoutEntity.startTime_, ascending: true)],
+        predicate: NSPredicate(format: "saved = %i", true),
         animation: .default)
     
     private var workouts: FetchedResults<WorkoutEntity>
@@ -26,9 +27,9 @@ struct ContentView: View {
             List {
                 ForEach(workouts) { workout in
                     NavigationLink {
-                        Text("Workout at \(workout.startedAt!, formatter: itemFormatter)")
+                        TimesListView(filter: workout.id)
                     } label: {
-                        Text(workout.startedAt!, formatter: itemFormatter)
+                        Text(workout.startTime, formatter: itemFormatter)
                     }
                 }
                 .onDelete(perform: deleteItems)

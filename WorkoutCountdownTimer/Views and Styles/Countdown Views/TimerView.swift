@@ -12,7 +12,7 @@ struct TimerView: View {
     
     var body: some View {
         let countdownHasCommenced = timerViewModel.countdownHasCommenced
-        let countdownTimerHisotryCountPlusOne = timerViewModel.countdownTimerHistory.count+1
+        let countdownTimerHisotryCountPlusOne = timerViewModel.countdownTimerHistory.countdowns.count+1
         if
             let remainingTime = timerViewModel.remainingTime,
             let currentCountdownExpired = timerViewModel.currentCountdownHasExpired,
@@ -27,7 +27,6 @@ struct TimerView: View {
                 }
             }
             .padding(5)
-            
         }
     }
 }

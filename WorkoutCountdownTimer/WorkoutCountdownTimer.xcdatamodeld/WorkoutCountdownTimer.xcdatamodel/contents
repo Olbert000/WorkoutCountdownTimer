@@ -3,11 +3,13 @@
     <entity name="CountdownEntity" representedClassName="CountdownEntity" syncable="YES" codeGenerationType="class">
         <attribute name="countingDownFrom" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="overTime" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="startTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="workout" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WorkoutEntity" inverseName="countdowns" inverseEntity="WorkoutEntity"/>
+        <attribute name="startTime_" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="workout" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WorkoutEntity" inverseName="countdowns_" inverseEntity="WorkoutEntity"/>
     </entity>
     <entity name="WorkoutEntity" representedClassName="WorkoutEntity" syncable="YES" codeGenerationType="class">
-        <attribute name="startedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="countdowns" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CountdownEntity" inverseName="workout" inverseEntity="CountdownEntity"/>
+        <attribute name="id_" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="saved" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="startTime_" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="countdowns_" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CountdownEntity" inverseName="workout" inverseEntity="CountdownEntity"/>
     </entity>
 </model>

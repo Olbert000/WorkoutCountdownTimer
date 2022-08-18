@@ -24,10 +24,10 @@ struct CountdownView: View {
                 TimerButtonsRowView()
                     .padding(10)
                 TimerView()
-                TimesListView()
+                TimesListView(filter: timerViewModel.countdownTimerHistory.id)
                 ControlButtonsView()
                 Button() {
-                    timerViewModel.saveWorkout(viewContext: viewContext)
+                    timerViewModel.saveWorkout()
                     dismiss()
                 } label: {
                     Text("save")

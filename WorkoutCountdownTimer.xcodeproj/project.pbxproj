@@ -17,7 +17,6 @@
 		5E04516128A382AC00F09872 /* WorkoutCountdownTimerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04516028A382AC00F09872 /* WorkoutCountdownTimerUITests.swift */; };
 		5E04516328A382AC00F09872 /* WorkoutCountdownTimerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04516228A382AC00F09872 /* WorkoutCountdownTimerUITestsLaunchTests.swift */; };
 		5E04517628A3BF8200F09872 /* StaticPreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04516F28A3BF8200F09872 /* StaticPreviewData.swift */; };
-		5E04517728A3BF8200F09872 /* TimerFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04517028A3BF8200F09872 /* TimerFunctions.swift */; };
 		5E04517828A3BF8200F09872 /* TimerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04517128A3BF8200F09872 /* TimerData.swift */; };
 		5E04517A28A3BF8200F09872 /* ClassExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04517328A3BF8200F09872 /* ClassExtensions.swift */; };
 		5E04517B28A3BF8200F09872 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04517428A3BF8200F09872 /* TimerViewModel.swift */; };
@@ -29,7 +28,6 @@
 		5E04518C28A3C00000F09872 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04518028A3C00000F09872 /* TimerView.swift */; };
 		5E04518D28A3C00000F09872 /* CountDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04518328A3C00000F09872 /* CountDownView.swift */; };
 		5E04518E28A3C00000F09872 /* TimerButtonsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E04518128A3C00000F09872 /* TimerButtonsRowView.swift */; };
-		5E53965D28A5DF9100F1C421 /* TimesListViewPassingInList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E53965C28A5DF9100F1C421 /* TimesListViewPassingInList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,7 +62,6 @@
 		5E04516028A382AC00F09872 /* WorkoutCountdownTimerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCountdownTimerUITests.swift; sourceTree = "<group>"; };
 		5E04516228A382AC00F09872 /* WorkoutCountdownTimerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCountdownTimerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		5E04516F28A3BF8200F09872 /* StaticPreviewData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticPreviewData.swift; sourceTree = "<group>"; };
-		5E04517028A3BF8200F09872 /* TimerFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerFunctions.swift; sourceTree = "<group>"; };
 		5E04517128A3BF8200F09872 /* TimerData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerData.swift; sourceTree = "<group>"; };
 		5E04517328A3BF8200F09872 /* ClassExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassExtensions.swift; sourceTree = "<group>"; };
 		5E04517428A3BF8200F09872 /* TimerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
@@ -76,7 +73,6 @@
 		5E04518228A3C00000F09872 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		5E04518328A3C00000F09872 /* CountDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownView.swift; sourceTree = "<group>"; };
 		5E04518528A3C00000F09872 /* TimesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesListView.swift; sourceTree = "<group>"; };
-		5E53965C28A5DF9100F1C421 /* TimesListViewPassingInList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesListViewPassingInList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,9 +125,7 @@
 			children = (
 				5E04513F28A382AA00F09872 /* WorkoutCountdownTimerApp.swift */,
 				5E04517328A3BF8200F09872 /* ClassExtensions.swift */,
-				5E04516F28A3BF8200F09872 /* StaticPreviewData.swift */,
 				5E04517128A3BF8200F09872 /* TimerData.swift */,
-				5E04517028A3BF8200F09872 /* TimerFunctions.swift */,
 				5E04517428A3BF8200F09872 /* TimerViewModel.swift */,
 				5E04514828A382AC00F09872 /* Persistence.swift */,
 				5E04518F28A3C04F00F09872 /* Views and Styles */,
@@ -146,6 +140,7 @@
 		5E04514528A382AC00F09872 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				5E04516F28A3BF8200F09872 /* StaticPreviewData.swift */,
 				5E04514628A382AC00F09872 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
@@ -183,12 +178,11 @@
 			children = (
 				5E04518328A3C00000F09872 /* CountDownView.swift */,
 				5E04517D28A3C00000F09872 /* ControlButtonsView.swift */,
-				5E04517F28A3C00000F09872 /* TimeHistoryTextView.swift */,
 				5E04518128A3C00000F09872 /* TimerButtonsRowView.swift */,
+				5E04518528A3C00000F09872 /* TimesListView.swift */,
+				5E04517F28A3C00000F09872 /* TimeHistoryTextView.swift */,
 				5E04517E28A3C00000F09872 /* TimerButtonView.swift */,
 				5E04518028A3C00000F09872 /* TimerView.swift */,
-				5E04518528A3C00000F09872 /* TimesListView.swift */,
-				5E53965C28A5DF9100F1C421 /* TimesListViewPassingInList.swift */,
 			);
 			path = "Countdown Views";
 			sourceTree = "<group>";
@@ -323,7 +317,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E53965D28A5DF9100F1C421 /* TimesListViewPassingInList.swift in Sources */,
 				5E04517B28A3BF8200F09872 /* TimerViewModel.swift in Sources */,
 				5E04514928A382AC00F09872 /* Persistence.swift in Sources */,
 				5E04518928A3C00000F09872 /* Styles.swift in Sources */,
@@ -333,7 +326,6 @@
 				5E04517828A3BF8200F09872 /* TimerData.swift in Sources */,
 				5E04518C28A3C00000F09872 /* TimerView.swift in Sources */,
 				5E04518A28A3C00000F09872 /* ControlButtonsView.swift in Sources */,
-				5E04517728A3BF8200F09872 /* TimerFunctions.swift in Sources */,
 				5E04518E28A3C00000F09872 /* TimerButtonsRowView.swift in Sources */,
 				5E04517A28A3BF8200F09872 /* ClassExtensions.swift in Sources */,
 				5E04518728A3C00000F09872 /* TimeHistoryTextView.swift in Sources */,
